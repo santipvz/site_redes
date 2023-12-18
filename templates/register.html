@@ -1,0 +1,33 @@
+<!-- templates/register.html -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portal de Juegos</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/estilo.css') }}">
+</head>
+<body>
+    <div class="container">
+        <form method="post">
+            <h1>¡Bienvenido al Portal de Juegos!</h1>
+            <div class="form-group">
+                <input type="text" name="name" placeholder="Nombre completo" required>
+            </div>
+            <div class="form-group">
+                <input type="email" name="email" placeholder="Email" required>
+            </div>
+            <div class="form-group">
+                <input type="password" name="password" placeholder="Contraseña" required>
+            </div>
+            <div class="form-group">
+                <input type="submit" name="register" value="Registrarse">
+            </div>
+        </form>
+        {% if message %}
+            <h3 class="{{ css_class }}">{{ message }}</h3>
+        {% endif %}
+        <p>¿Ya tienes una cuenta? <a href="{{ url_for('login') }}">Inicia sesión aquí</a>.</p>
+    </div>
+</body>
+</html>

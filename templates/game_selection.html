@@ -1,0 +1,95 @@
+<!-- templates/game_selection.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <a href="{{ url_for('logout') }}" class="logout-button">Cerrar Sesión</a>
+    <title>Selecciona un Juego</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/estilo.css') }}">
+    <style>
+        /* Añade estilos adicionales aquí si es necesario */
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            margin-top: 30px; /* Ajusta la distancia desde la parte superior */
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 75px;
+            display: flex;
+            justify-content: center; /* Centra los elementos horizontalmente */
+            align-items: top; /* Centra los elementos verticalmente */
+            /*height: 100vh;  Aprovecha el 100% de la altura de la ventana */
+            /*margin: 0;  Elimina el margen por defecto del body */
+        }
+
+        li {
+            text-align: center;
+            margin-right: 20px; /* Espaciado entre elementos */
+        }
+
+        img, .upcoming-game {
+            width: 200px; /* Establece el ancho deseado para las imágenes y los cuadros "Próximamente..." */
+            height: 122px; /* Establece la altura deseada para las imágenes y los cuadros "Próximamente..." */
+            border: 2px solid #ffffff; /* Añade un borde para mayor claridad */
+            border-radius: 8px; /* Añade bordes redondeados */
+        }
+
+        .logout-button {
+        position: absolute;
+        top: 30px;
+        right: 30px;
+        text-decoration: none;
+        padding: 10px 15px;
+        background-color: rgb(163, 6, 6);
+        color: #fff;
+        border-radius: 5px;
+        transition: transform 0.1s ease;
+        }
+
+        img, .upcoming-game {
+        width: 200px;
+        height: 122px;
+        border: 2px solid #515050;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        margin-bottom: 10px; /* Espaciado adicional para separar las imágenes */
+        transition: transform 0.1s ease; /* Añade una transición suave al hacer hover */
+        }
+
+        img:hover,
+        .upcoming-game:hover,
+        .logout-button:hover {
+            transform: scale(1.05);
+            border-color: #515050; /* Cambia el color del borde al hacer hover */
+        }
+
+    </style>
+</head>
+<body>
+    <h1>Selecciona un Juego</h1>
+    <ul>
+        {% for game in games %}
+            <li>
+                <a href="{{ url_for('play_game', game=game) }}">
+                    <img src="{{ url_for('static', filename='images/' + game.lower() + '_thumbnail.png') }}" alt="{{ game }} Thumbnail">
+                </a>
+            </li>
+        {% endfor %}
+        <li>
+            <a href="#">
+                <img src="{{ url_for('static', filename='images/coming_thumbnail.png') }}" alt="Próximamente...">
+            </a>
+        </li>
+        <li>
+            <a href="#">
+                <img src="{{ url_for('static', filename='images/coming_thumbnail.png') }}" alt="Próximamente...">
+            </a>
+        </li>
+    </ul>
+</body>
+</html>
